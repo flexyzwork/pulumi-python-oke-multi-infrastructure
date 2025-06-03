@@ -1,0 +1,66 @@
+[tool.ruff]
+# 기본 설정
+line-length = 119
+target-version = "py312"
+
+# 제외할 디렉토리
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    ".venv",
+    "venv",
+]
+
+[tool.ruff.lint]
+# 활성화할 규칙들 (기존 도구들을 통합)
+select = [
+    "E",      # pycodestyle errors (flake8 기본)
+    "W",      # pycodestyle warnings (flake8 기본)
+    "F",      # pyflakes (flake8 기본)
+    "I",      # isort (import 정렬)
+    "B",      # flake8-bugbear (버그 방지)
+    "C4",     # flake8-comprehensions (컴프리헨션 최적화)
+    "UP",     # pyupgrade (구문 업그레이드)
+    "Q",      # flake8-quotes (따옴표 통일)
+    "N",      # pep8-naming (네이밍 규칙)
+    "T20",    # flake8-print (print 문 체크)
+    "RUF",    # Ruff 전용 규칙
+]
+
+# 무시할 규칙들
+ignore = [
+    "E203",   # whitespace before ':' (black과 충돌하는 규칙)
+    "T201",   # print 사용 허용 (디버깅용)
+    "T203",   # pprint 사용 허용
+]
+
+# 자동 수정 가능한 규칙들
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.flake8-quotes]
+# 따옴표 설정을 single로 통일
+inline-quotes = "single"
+multiline-quotes = "double"
+docstring-quotes = "double"
+avoid-escape = true
+
+[tool.ruff.lint.isort]
+# import 정렬 설정
+known-first-party = ["pulumi-python-oke-infra"]
+known-third-party = ["pulumi", "pulumi_oci", "oci"]
+force-single-line = false
+combine-as-imports = true
+
+[tool.ruff.lint.pep8-naming]
+# 네이밍 규칙 설정
+classmethod-decorators = ["classmethod"]
+
+[tool.ruff.format]
+# 포맷팅 설정 (black 스타일 기반)
+quote-style = "single"           # 단일 따옴표 사용
+indent-style = "space"           # 스페이스로 들여쓰기
+line-ending = "auto"             # 자동 줄바꿈 감지
+skip-magic-trailing-comma = false # 매직 트레일링 콤마 유지

@@ -1,0 +1,69 @@
+repos:
+  # 기본 pre-commit 훅들
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace        # 후행 공백 제거
+      - id: end-of-file-fixer         # 파일 끝 줄바꿈 추가
+      - id: check-yaml                # YAML 파일 문법 검사
+      - id: check-toml                # TOML 파일 문법 검사
+      - id: check-json                # JSON 파일 문법 검사
+      - id: check-merge-conflict      # 병합 충돌 마커 검사
+      - id: check-added-large-files   # 대용량 파일 추가 방지
+
+  # 🚀 Ruff - 초고속 통합 린터/포매터 (Rust 기반)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.11.12
+    hooks:
+      # Ruff 린터 (flake8, isort, autoflake, yapf의 모든 기능 통합)
+      - id: ruff
+        name: "🔧 Ruff 린터 (통합 코드 분석)"
+        args: [--fix, --exit-non-zero-on-fix]
+        description: "Import 정렬, 미사용 코드 제거, 스타일 수정 등 자동 처리"
+
+      # Ruff 포매터 (black, yapf 등을 대체)
+      - id: ruff-format
+        name: "✨ Ruff 포매터 (코드 스타일 통일)"
+        description: "119자 줄 길이, 따옴표 통일, 들여쓰기 정규화"
+
+  # 📝 타입 체킹 (Ruff로 대체 불가능한 기능)
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: 'v1.16.0'
+    hooks:
+      - id: mypy
+        name: "🔍 MyPy 타입 체크"
+        additional_dependencies: [
+          types-requests,      # requests 라이브러리 타입
+          types-PyYAML,       # PyYAML 라이브러리 타입
+          types-toml          # TOML 라이브러리 타입
+        ]
+        args: [--ignore-missing-imports]
+        description: "정적 타입 분석 및 타입 힌트 검증"
+
+  # 📋 추가 보안 검사 (선택사항 - 필요시 주석 해제)
+  # - repo: https://github.com/PyCQA/bandit
+  #   rev: '1.7.5'
+  #   hooks:
+  #     - id: bandit
+  #       name: "🔒 Bandit 보안 검사"
+  #       args: ["-r", ".", "-f", "json"]
+  #       exclude: ^tests/
+
+# 전역 설정
+default_stages: [commit, push]
+fail_fast: false
+
+# CI 환경 설정
+ci:
+  autofix_commit_msg: |
+    🤖 [pre-commit.ci] 자동 수정 적용
+
+    - Ruff 린터/포매터 규칙 적용
+    - Import 정렬 및 미사용 코드 제거
+    - 코드 스타일 119자 기준으로 통일
+  autofix_prs: true
+  autoupdate_branch: ''
+  autoupdate_commit_msg: '[pre-commit.ci] pre-commit 훅 자동 업데이트'
+  autoupdate_schedule: weekly
+  skip: []
+  submodules: false

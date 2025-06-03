@@ -1,0 +1,38 @@
+{
+  "peer_map": {
+    "se": ["os"]
+  },
+  "home_region": "os",
+  "node": {
+    "kubernetes_version": "v1.32.1",
+    "node_pool_name": "pool1",
+    "node_pool_size": 2,
+    "node_shape": "VM.Standard.A1.Flex",
+    "node_memory_gbs": 12,
+    "node_ocpus": 2
+  },
+  "regions": {
+    "se": {
+      "availability_domain": "iyBe:AP-SEOUL-1-AD-1",
+      "service_cidr": "all-icn-services-in-oracle-services-network",
+      "service_id": "ocid1.service.oc1.ap-seoul-1.aaaaaaaajqph4epgmyaodyehthzt6egwhujh62xp3mpdebiflu6nhaogfazq",
+      "image_id": "ocid1.image.oc1.ap-seoul-1.aaaaaaaagykwyziagqw7dhmhfgwhszppz3vhwllyqqtdvvmk4wa6nec7mi2a",
+      "vcn_cidr_block": "10.10.0.0/16",
+      "node_subnet_cidr_block": "10.10.10.0/24",
+      "k8s_api_subnet_cidr_block": "10.10.20.0/24",
+      "service_lb_subnet_cidr_block": "10.10.30.0/24",
+      "admin_group_id": "ocid1.group.oc1..aaaaaaaan....."
+    },
+    "os": {
+      "availability_domain": "PCHh:AP-OSAKA-1-AD-1",
+      "service_cidr": "all-kix-services-in-oracle-services-network",
+      "service_id": "ocid1.service.oc1.ap-osaka-1.aaaaaaaanpw2x646vasmcdktlznzhf7mwmcgf4hhmw5zepgspmseokxjyj4q",
+      "image_id": "ocid1.image.oc1.ap-osaka-1.aaaaaaaa4xyxytwqlwbxp5rp5qvhi5snlomtjgyavitu3m36bp4neknjsloa",
+      "vcn_cidr_block": "10.30.0.0/16",
+      "node_subnet_cidr_block": "10.30.10.0/24",
+      "k8s_api_subnet_cidr_block": "10.30.20.0/24",
+      "service_lb_subnet_cidr_block": "10.30.30.0/24",
+      "admin_group_id": "ocid1.group.oc1..aaaaaaaa......"
+    }
+  }
+}

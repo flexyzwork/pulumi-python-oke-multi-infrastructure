@@ -1,0 +1,121 @@
+{
+    "folders": [
+        {
+            "path": "."
+        }
+    ],
+    "settings": {
+        // Python 분석 설정
+        "python.analysis.typeCheckingMode": "basic",
+        "python.analysis.autoImportCompletions": true,
+        "python.analysis.extraPaths": [
+            "./auth"
+        ],
+
+        // Python 포매터/린터 설정 (Ruff 중심)
+        "[python]": {
+            "editor.defaultFormatter": "charliermarsh.ruff",    // 주 포매터: Ruff
+            "editor.formatOnSave": true,
+            "editor.codeActionsOnSave": {
+                "source.fixAll.ruff": "explicit",              // Ruff 자동 수정
+                "source.organizeImports.ruff": "explicit"       // Import 정리
+            }
+        },
+
+        // 기타 파일 형식 포매터
+        "[json]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "[toml]": {
+            "editor.defaultFormatter": "tamasfe.even-better-toml"
+        },
+
+        // 철자 검사 단어 목록 (프로젝트 관련)
+        "cSpell.words": [
+            // 프로젝트 핵심 용어
+            "pulumi", "containerengine", "mgmt", "flexyz", "oci",
+            // Python 도구들
+            "ruff", "yapf", "isort", "flake8", "mypy", "autofix",
+            "pyproject", "toml", "setuptools",
+            // 기술 용어
+            "bugbear", "builtins", "polyfill", "docstring",
+            "classmethod", "staticmethod", "dataclass",
+            // 개발 관련
+            "venv", "deps", "stdin", "stdout", "stderr"
+        ],
+
+        // 에디터 기본 설정
+        "editor.formatOnSave": true,
+        "editor.rulers": [119],                                 // 119자 가이드라인
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+
+        // Python 린팅 설정 (Ruff 우선, Flake8 보조)
+        "python.linting.enabled": true,
+        "python.linting.ruffEnabled": true,                     // Ruff 활성화 (주)
+        "python.linting.flake8Enabled": true,                   // Flake8 유지 (119자 체크용)
+        "python.linting.pylintEnabled": false,                  // PyLint 비활성화
+        "python.linting.mypyEnabled": true,                     // MyPy 타입 체킹
+
+        // Ruff 관련 설정
+        "ruff.args": [
+            "--line-length=119"                                 // 명시적 줄 길이 설정
+        ],
+
+        // Flake8 설정 (VS Code 호환성용)
+        "python.linting.flake8Args": [
+            "--max-line-length=119",                            // 119자 제한
+            "--ignore=E203,W503,I100,I201,Q000"               // Ruff와 중복 규칙 무시
+        ],
+
+        // HTML/Django 설정 유지
+        "html.format.enable": false,
+        "[html]": {
+            "editor.formatOnSave": false,
+            "editor.defaultFormatter": null
+        },
+        "emmet.includeLanguages": {
+            "django-html": "html"
+        },
+        "[django-html]": {
+            "editor.formatOnSave": false,
+            "editor.defaultFormatter": null
+        },
+
+        // 파일 자동 정리 설정
+        "files.trimTrailingWhitespace": true,                   // 후행 공백 제거
+        "files.insertFinalNewline": true,                       // 마지막 줄바꿈 추가
+        "files.trimFinalNewlines": true,                        // 불필요한 마지막 줄바꿈 제거
+
+        // Git 관련 설정
+        "git.autofetch": true,
+        "git.confirmSync": false
+    },
+    "extensions": {
+        "recommendations": [
+            // 필수 확장 프로그램
+            "ms-python.python",                                 // Python 기본 지원
+            "charliermarsh.ruff",                               // Ruff (주 린터/포매터)
+            "ms-python.mypy-type-checker",                      // MyPy 타입 체킹
+
+            // 포매팅 도구
+            "esbenp.prettier-vscode",                           // JSON/기타 포매터
+            "tamasfe.even-better-toml",                         // TOML 지원
+
+            // 개발 편의성
+            "formulahendry.auto-close-tag",                     // 자동 태그 닫기
+            "formulahendry.auto-rename-tag",                    // 자동 태그 이름 변경
+            "editorconfig.editorconfig",                        // EditorConfig 지원
+            "streetsidesoftware.code-spell-checker",            // 맞춤법 검사
+
+            // Git 관련
+            "mhutchie.git-graph",                              // Git 그래프 시각화
+            "eamodio.gitlens"                                  // Git 향상 도구
+
+            // 제거된 확장 (Ruff가 대체)
+            // "eeyore.yapf"           - Ruff format이 대체
+            // "ms-python.isort"       - Ruff I 규칙이 대체
+            // "ms-python.flake8"      - Ruff lint가 대체 (기본 flake8은 유지)
+        ]
+    }
+}

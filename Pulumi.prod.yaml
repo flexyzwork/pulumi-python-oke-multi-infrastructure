@@ -1,0 +1,3 @@
+config:
+  oci-infrastructure:ssh_public_key:
+    secure: AAABAK7TzuNqEADI3A4BWJqs8Y4Lawc36tnMa+b6JGKb3HfNenrXOlWpIKhZu+uIr2lKDbLY1xhPv1LVUx3zgdLBBgAuzYBz5t0yRqDuaPei8eVxplVdAlxXxPi/VIkThqTopt5TXiqBlsqpo2QlLT14g6yMtRdlx/FUqwBXLuYN6ME=
